@@ -6,6 +6,11 @@ package e2e
 import (
 	"context"
 	"errors"
+	"fmt"
+	"os"
+	"testing"
+	"time"
+
 	"github.com/vmware-tanzu/cloud-native-security-inspector/cnsi-manager/api/v1alpha1"
 	"github.com/vmware-tanzu/cloud-native-security-inspector/lib/log"
 	"github.com/vmware-tanzu/cloud-native-security-inspector/test/e2e/inspectionpolicy"
@@ -13,12 +18,9 @@ import (
 	appsv1 "k8s.io/api/apps/v1"
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	"os"
 	"sigs.k8s.io/e2e-framework/klient/decoder"
 	"sigs.k8s.io/e2e-framework/klient/k8s/resources"
 	"sigs.k8s.io/e2e-framework/pkg/features"
-	"testing"
-	"time"
 
 	"sigs.k8s.io/e2e-framework/pkg/env"
 	"sigs.k8s.io/e2e-framework/pkg/envconf"
@@ -50,6 +52,7 @@ func TestMain(m *testing.M) {
 		envfuncs.DestroyKindCluster(kindClusterName),
 	)
 
+	fmt.Print("Hello, ")
 	os.Exit(testEnv.Run(m))
 }
 
