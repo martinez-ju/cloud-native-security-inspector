@@ -52,7 +52,7 @@ func TestMain(m *testing.M) {
 		envfuncs.DestroyKindCluster(kindClusterName),
 	)
 
-	fmt.Print("Hello, People")
+	fmt.Print("Hello There!!!!")
 	os.Exit(testEnv.Run(m))
 }
 
