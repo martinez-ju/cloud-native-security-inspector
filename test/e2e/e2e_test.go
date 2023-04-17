@@ -6,7 +6,6 @@ package e2e
 import (
 	"context"
 	"errors"
-	"fmt"
 	"os"
 	"testing"
 	"time"
@@ -51,8 +50,6 @@ func TestMain(m *testing.M) {
 		envfuncs.TeardownCRDs("../../deployments/yaml", "*"),
 		envfuncs.DestroyKindCluster(kindClusterName),
 	)
-
-	fmt.Print("Hello There!!!!")
 	os.Exit(testEnv.Run(m))
 }
 
