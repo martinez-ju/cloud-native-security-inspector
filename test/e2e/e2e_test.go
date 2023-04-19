@@ -276,3 +276,35 @@ func waitPodReady(
 	}
 	return errors.New("time out when checking the pods of the deployment")
 }
+func TestKubernetes(t *testing.T) {
+	f1 := features.New("count pod").
+		WithLabel("type", "pod-count").
+		Assess("pods from kube-system", func(ctx context.Context, t *testing.T, cfg *envconf.Config) context.Context {
+			var pods corev1.PodList
+			err := cfg.Client().Resources("kube-system").List(context.TODO(), &pods)
+			if err != nil {
+				t.Fatal(err)
+			}
+			if len(pods.Items) == 0 {
+				t.Fatal("no pods in namespace kube-system")
+			}
+			return ctx
+		}).Feature()
+
+	f2 := features.New("count namespaces").
+		WithLabel("type", "ns-count").
+		Assess("namespace exist", func(ctx context.Context, t *testing.T, cfg *envconf.Config) context.Context {
+			var nspaces corev1.NamespaceList
+			err := cfg.Client().Resources().List(context.TODO(), &nspaces)
+			if err != nil {
+				t.Fatal(err)
+			}
+			if len(nspaces.Items) == 1 {
+				t.Fatal("no other namespace")
+			}
+			return ctx
+		}).Feature()
+
+	// test feature
+	testEnv.Test(t, f1, f2)
+}
