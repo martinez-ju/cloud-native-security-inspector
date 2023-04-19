@@ -2,23 +2,23 @@ package e2e
 
 import (
 	"context"
-	"os"
 	"testing"
 
 	"sigs.k8s.io/e2e-framework/pkg/features"
 
-	"sigs.k8s.io/e2e-framework/pkg/env"
 	"sigs.k8s.io/e2e-framework/pkg/envconf"
-	"sigs.k8s.io/e2e-framework/pkg/envfuncs"
 )
 
+/*
 var (
+
 	testEnv         env.Environment
 	kindClusterName string
 	namespace       string
-)
 
-func TestMain(m *testing.M) {
+)
+*/
+/*func TestMain(m *testing.M) {
 	testenv = env.New()
 	kindClusterName := envconf.RandomName("my-cluster", 16)
 	namespace := envconf.RandomName("myns", 16)
@@ -36,7 +36,7 @@ func TestMain(m *testing.M) {
 	// launch package tests
 	os.Exit(testenv.Run(m))
 }
-
+*/
 func TestKubernetes(t *testing.T) {
 	f1 := features.New("count pod").
 		WithLabel("type", "pod-count").
