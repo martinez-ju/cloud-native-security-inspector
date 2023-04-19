@@ -50,6 +50,7 @@ func TestMain(m *testing.M) {
 		envfuncs.TeardownCRDs("../../deployments/yaml", "*"),
 		envfuncs.DestroyKindCluster(kindClusterName),
 	)
+
 	os.Exit(testEnv.Run(m))
 }
 
